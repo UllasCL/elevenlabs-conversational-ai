@@ -3,18 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ElevenLabs Conversational AI</title>
+  <title>SM AI Agent</title>
+  <style>
+    /* Reset some default styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Set a pleasant background and font */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    /* Container for the content */
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Heading styles */
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #333333;
+    }
+
+    /* Button styles */
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #startButton {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    #startButton:hover:not(:disabled) {
+      background-color: #45a049;
+    }
+
+    #stopButton {
+      background-color: #f44336;
+      color: white;
+    }
+
+    #stopButton:hover:not(:disabled) {
+      background-color: #da190b;
+    }
+
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    /* Status styles */
+    .status {
+      font-size: 1.1em;
+      color: #555555;
+      margin-bottom: 10px;
+    }
+
+    .status span {
+      font-weight: bold;
+      color: #000000;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      button {
+        padding: 10px 16px;
+        font-size: 0.9em;
+      }
+
+      .status {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; padding: 50px;">
-<h1>ElevenLabs Conversational AI</h1>
-<div style="margin-bottom: 20px;">
-  <button id="startButton" style="padding: 10px 20px; margin: 5px;">Start Conversation</button>
-  <button id="stopButton" style="padding: 10px 20px; margin: 5px;" disabled>Stop Conversation</button>
+<body>
+<div class="container">
+  <h1>SM AI Agent</h1>
+  <div class="button-group">
+    <button id="startButton" aria-label="Start Conversation">Start Conversation</button>
+    <button id="stopButton" aria-label="Stop Conversation" disabled>Stop Conversation</button>
+  </div>
+  <div class="status">
+    <p><span id="connectionStatus"></span></p>
+    <p> <span id="agentStatus"></span></p>
+  </div>
 </div>
-<div style="font-size: 18px;">
-  <p>Status: <span id="connectionStatus">Disconnected</span></p>
-  <p>Agent is <span id="agentStatus">listening</span></p>
-</div>
+
 <script type="module" src="./script.js"></script>
 </body>
 </html>
