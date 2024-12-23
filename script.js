@@ -7,14 +7,24 @@ const agentStatus = document.getElementById('agentStatus');
 
 let conversation;
 
+async function getSignedUrl() {
+    const response = await fetch('http://localhost:3001/api/get-signed-url');
+    if (!response.ok) {
+        throw new Error(`Failed to get signed url: ${response.statusText}`);
+    }
+    const { signedUrl } = await response.json();
+    return signedUrl;
+}
 async function startConversation() {
     try {
         // Request microphone permission
         await navigator.mediaDevices.getUserMedia({ audio: true });
 
+        const signedUrl = await getSignedUrl();
+
         // Start the conversation
         conversation = await Conversation.startSession({
-            agentId: 'cwpy6HtdtlwBCNspFhvB', // Replace with your agent ID
+            signedUrl,
             onConnect: () => {
                 connectionStatus.textContent = 'Connected';
                 startButton.disabled = true;
